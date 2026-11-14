@@ -20,6 +20,8 @@ jobs:
         run: rm -rf android ios
       - name: Expo Prebuild
         run: npx expo prebuild --platform android
+      - name: Fix missing splashscreen color
+        run: mkdir -p android/app/src/main/res/values && echo '<resources><color name="splashscreen_background">#000000</color></resources>' > android/app/src/main/res/values/colors.xml
       - name: Increase Gradle Memory
         run: echo "org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=512m" >> android/gradle.properties
       - name: Build Android APK
